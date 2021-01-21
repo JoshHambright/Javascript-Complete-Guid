@@ -1,3 +1,11 @@
-let currentResult = 0;
+const defaultResult = 0;
+let currentResult = defaultResult;
 
-currentResult = currentResult + 10;
+function add(){
+    currentResult = currentResult + userInput.value;
+    outputResult(currentResult, '');
+}
+
+
+addBtn.addEventListener('click', add);
+
