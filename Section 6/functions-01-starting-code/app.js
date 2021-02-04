@@ -17,7 +17,7 @@ const getPlayerChoice = () => {
   ).toUpperCase();
   if (selection != ROCK && selection != PAPER && selection != SCISSORS) {
     alert(`Invalid choice. We chose ${DEFAULT_USER_CHOICE} for you!`);
-    return DEFAULT_USER_CHOICE;
+    return;
   }
   return selection;
 };
@@ -33,7 +33,7 @@ const getComputerChoice = () => {
   }
 };
 
-const getWinner = (cChoice, pChoice) =>
+const getWinner = (cChoice, pChoice = DEFAULT_USER_CHOICE) =>
   cChoice === pChoice
     ? RESULT_DRAW
     : (cChoice === ROCK && pChoice === PAPER) ||
@@ -62,15 +62,53 @@ startGameBtn.addEventListener('click', () => {
   console.log('Game is starting...');
   const playerSelection = getPlayerChoice();
   const computerSelection = getComputerChoice();
-  const winner = getWinner(computerSelection, playerSelection);
-  let message = `You picked ${playerSelection} and the computer picked ${computerSelection}. Therefore you `;
-  if (winner === RESULT_DRAW){
-      message += 'had a draw.';
-  } else if (winner === RESULT_PLAYER_WINS){
-      message += 'won!'
-  } else{
-      message += 'lost!'
+  let winner;
+  if (playerSelection) {
+    winner = getWinner(computerSelection, playerSelection);
+  } else {
+    winner = getWinner(computerSelection, playerSelection);
+  }
+  //   const winner = getWinner(computerSelection, playerSelection);
+  let message = `You picked ${
+    playerSelection || DEFAULT_USER_CHOICE
+  } and the computer picked ${computerSelection}. Therefore you `;
+  if (winner === RESULT_DRAW) {
+    message += 'had a draw.';
+  } else if (winner === RESULT_PLAYER_WINS) {
+    message += 'won!';
+  } else {
+    message += 'lost!';
   }
   alert(message);
   gameIsRunning = false;
 });
+
+//Not related to the game
+const sumUp = (resultHandler,...numbers) => {
+  const validateNumber = (number) => {
+    return isNaN(number) ? 0 : number;
+  };
+
+  let sum = 0;
+  for (const num of numbers) {
+    sum += validateNumber(num);
+  }
+  resultHandler(sum);
+};
+
+const subtractUp = function () {
+  let sum = 0;
+  for (const num of arguments) {
+    //dont use that, old style
+    sum -= num;
+  }
+  return sum;
+};
+
+const showResult = (result)=>{
+    alert('The Result after adding all numbers is: ' + result);
+};
+
+sumUp(showResult,1, 5, 'fsda', -3, 6, 10);
+sumUp(showResult,1, 5, 10, -3, 6, 10, 25, 88);
+console.log(subtractUp(1, 10, 15, 20));
