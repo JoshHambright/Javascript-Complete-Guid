@@ -1,20 +1,43 @@
 const h1 = document.getElementById('main-title');
 
-h1.textContent = 'Some new Content!';
-h1.style.color = 'white';
-h1.style.backgroundColor = 'red';
-//const listItemElements = document.querySelectorAll('li');
+// h1.textContent = 'Some new Content!';
+// h1.style.color = 'white';
+// h1.style.backgroundColor = 'red';
+// //const listItemElements = document.querySelectorAll('li');
 
-const li = document.querySelector('li:last-of-type');
-li.textContent = li.textContent + '(changed!);'
+// const li = document.querySelector('li:last-of-type');
+// li.textContent = li.textContent + '(changed!);'
 
 
-const listItemElements = document.getElementsByTagName('li');
+// const listItemElements = document.getElementsByTagName('li');
 
-const body = document.body;
+// const body = document.body;
 
-body.q
+// body.q
 
-for (const listItem of listItemElements){
-    console.dir(listItem);
-}
+// for (const listItem of listItemElements){
+//     console.dir(listItem);
+// }
+
+const ul = document.body.firstElementChild.nextElementSibling;
+const firstLi = ul.firstElementChild;
+
+console.log(firstLi);
+
+const section = document.querySelector('section');
+const button = document.querySelector('button');
+
+// section.style.backgroundColor = 'blue';
+
+section.className = 'red-bg';
+
+button.addEventListener('click', () => {
+    // if (section.className == 'red-bg visible'){
+    //     section.className = 'red-bg invisible';
+    // }else{
+    //     section.className = 'red-bg visible';
+    // }
+    section.classList.toggle('visible');
+    section.classList.toggle('invisible');
+})
+
